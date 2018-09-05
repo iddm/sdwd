@@ -1,0 +1,7 @@
+[package]
+name = "sdwd"
+version = "0.1.0"
+authors = ["Victor Polevoy <maintainer@vpolevoy.com>"]
+
+[dependencies]
+systemd = "0.3"
