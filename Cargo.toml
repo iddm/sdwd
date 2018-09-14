@@ -5,3 +5,5 @@ authors = ["Victor Polevoy <maintainer@vpolevoy.com>"]
 
 [dependencies]
 systemd = "0.3"
+log = "0.4"
+lazy_static = "1"
