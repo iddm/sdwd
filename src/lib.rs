@@ -4,18 +4,17 @@
 //! # Usage
 //!
 //! ```rust,no_run
-//! extern crate sdwd;
-//!
 //! fn main() {
-//!     let wd_thread = sdwd::start_watchdog_thread(sdwd::expected_timeout().unwrap());
+//!     let recommended_timeout = sdwd::recommended_timeout().unwrap();
+//!     println!("Recommended timeout: {:?}", recommended_timeout);
+//!     let _ = sdwd::start_watchdog_thread(recommended_timeout);
 //!
 //!     loop {
 //!         use std::thread;
-//!         thread::sleep_ms(5000);
+//!         use std::time::Duration;
+//!         thread::sleep(Duration::from_secs(5));
 //!         println!("Printing this message once in five seconds");
 //!     }
-//!
-//!     wd_thread.join();
 //! }
 //! ```
 
@@ -42,6 +41,12 @@ pub fn expected_timeout() -> Result<Duration, systemd::Error> {
     systemd::daemon::watchdog_enabled(false).map(Duration::from_micros)
 }
 
+/// According to the documentation of the systemd, it is recommended to ping watchdog every half of the
+/// `expected_timeout()`'s.
+pub fn recommended_timeout() -> Result<Duration, systemd::Error> {
+    Ok(expected_timeout()? / 2)
+}
+
 /// Pings the watchdog. Should be called repeatedly within the `expected_timeout()` interval.
 pub fn ping_watchdog() -> Result<bool, systemd::Error> {
     systemd::daemon::notify(false, WATCHDOG_NOTIFICATION_HASHMAP.to_owned())
@@ -54,6 +59,8 @@ pub fn start_watchdog_thread(duration: Duration) -> thread::JoinHandle<()> {
 
         if let Err(e) = ping_watchdog() {
             warn!("Could not ping systemd's watchdog: {:?}", e);
+        } else {
+            debug!("Pinged systemd's watchdog.");
         }
     })
 }
