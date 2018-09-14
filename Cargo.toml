@@ -2,8 +2,17 @@
 name = "sdwd"
 version = "0.1.0"
 authors = ["Victor Polevoy <maintainer@vpolevoy.com>"]
+description = "SystemD WatchDog utility crate"
+readme = "README.md"
+license = "MIT"
+keywords = ["systemd", "watchdog", "timer"]
+repository = "https://github.com/vityafx/sdwd"
+documentation = "https://docs.rs/sdwd"
 
 [dependencies]
 systemd = "0.3"
 log = "0.4"
 lazy_static = "1"
+
+[badges]
+travis-ci = { repository = "vityafx/sdwd" }
