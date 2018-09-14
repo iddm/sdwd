@@ -7,6 +7,20 @@ management.
 
 # Usage
 
+*sdwd-test.service*:
+
+```service
+[Unit]
+Description=sdwd test daemon
+
+[Service]
+ExecStart=sdwd-test
+WatchdogSec=30s
+Restart=on-failure
+```
+
+*src/main.rs*:
+
 ```rust
 extern crate sdwd;
 
@@ -23,6 +37,11 @@ fn main() {
     }
 }
 ```
+
+## Read about watchdogs
+https://www.freedesktop.org/software/systemd/man/systemd.service.html
+
+https://www.freedesktop.org/software/systemd/man/sd_watchdog_enabled.html
 
 ## License
 
