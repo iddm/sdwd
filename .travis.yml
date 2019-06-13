@@ -4,6 +4,7 @@ rust:
   - beta
 os:
   - linux
+dist: xenial
 cache:
   cargo: true
   timeout: 900
@@ -26,5 +27,6 @@ addons:
   apt:
     packages:
       - libssl-dev
+      - libsystemd-dev
 notifications:
   email: false
