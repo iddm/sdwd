@@ -26,6 +26,6 @@ addons:
   apt:
     packages:
       - libssl-dev
-      - libsystemd-dev
+      - libsystemd
 notifications:
   email: false
