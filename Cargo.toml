@@ -12,7 +12,6 @@ documentation = "https://docs.rs/sdwd"
 [dependencies]
 systemd = "0.4"
 log = "0.4"
-lazy_static = "1"
 
 [badges]
 travis-ci = { repository = "vityafx/sdwd" }

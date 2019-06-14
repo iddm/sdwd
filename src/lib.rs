@@ -21,20 +21,9 @@
 #[macro_use]
 extern crate log;
 extern crate systemd;
-#[macro_use]
-extern crate lazy_static;
 
-use std::collections::HashMap;
 use std::thread;
 use std::time::Duration;
-
-lazy_static! {
-    static ref WATCHDOG_NOTIFICATION_HASHMAP: HashMap<&'static str, &'static str> = {
-        let mut m = HashMap::new();
-        m.insert(systemd::daemon::STATE_WATCHDOG, "1");
-        m
-    };
-}
 
 /// Returns expected watchdog ping timeout with microseconds precision.
 pub fn expected_timeout() -> Result<Duration, systemd::Error> {
@@ -49,7 +38,7 @@ pub fn recommended_timeout() -> Result<Duration, systemd::Error> {
 
 /// Pings the watchdog. Should be called repeatedly within the `expected_timeout()` interval.
 pub fn ping_watchdog() -> Result<bool, systemd::Error> {
-    systemd::daemon::notify(false, WATCHDOG_NOTIFICATION_HASHMAP.to_owned())
+    systemd::daemon::notify(false, [(systemd::daemon::STATE_WATCHDOG, "1")].iter())
 }
 
 /// Starts watchdog thread pinging with specified interval.
