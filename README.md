@@ -1,5 +1,6 @@
 # sdwd
-[![](https://meritbadge.herokuapp.com/sdwd)](https://crates.io/crates/sdwd) [![](https://travis-ci.org/vityafx/sdwd.svg?branch=master)](https://travis-ci.org/vityafx/sdwd) [![](https://docs.rs/sdwd/badge.svg)](https://docs.rs/sdwd)
+[![Crates badge](https://img.shields.io/crates/v/sdwd.svg)](https://crates.io/crates/sdwd) 
+[![](https://docs.rs/sdwd/badge.svg)](https://docs.rs/sdwd)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 `sdwd` - SystemD WatchDog crate. Provides simple watchdog notification utilities for easy watchdog
