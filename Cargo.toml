@@ -6,12 +6,9 @@ description = "SystemD WatchDog utility crate"
 readme = "README.md"
 license = "MIT"
 keywords = ["systemd", "watchdog", "timer"]
-repository = "https://github.com/vityafx/sdwd"
+repository = "https://github.com/iddm/sdwd"
 documentation = "https://docs.rs/sdwd"
 
 [dependencies]
 systemd = "0.4"
 log = "0.4"
-
-[badges]
-travis-ci = { repository = "vityafx/sdwd" }
